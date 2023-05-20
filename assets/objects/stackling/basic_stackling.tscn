@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyyy3um6325sj"]
+
+[ext_resource type="PackedScene" uid="uid://75fdc3pijhsn" path="res://assets/objects/stackling/stackling.tscn" id="1_qp5xi"]
+[ext_resource type="Script" path="res://assets/objects/stackling/basic_stackling.gd" id="2_6jn75"]
+
+[node name="BasicStackling" instance=ExtResource("1_qp5xi")]
+script = ExtResource("2_6jn75")

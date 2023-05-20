@@ -1,0 +1,127 @@
+[gd_scene load_steps=13 format=3 uid="uid://75fdc3pijhsn"]
+
+[ext_resource type="Script" path="res://assets/objects/stackling/stackling.gd" id="1_lsscb"]
+[ext_resource type="Texture2D" uid="uid://dpaujl5da1605" path="res://assets/textures/stacklings/basic.png" id="2_vcqa7"]
+[ext_resource type="Texture2D" uid="uid://nwoeprsnybk1" path="res://assets/textures/stacklings/basic_hold.png" id="3_646ae"]
+[ext_resource type="Texture2D" uid="uid://dvtk4p4725top" path="res://assets/textures/stacklings/basic_back.png" id="4_u5ua6"]
+[ext_resource type="Script" path="res://assets/objects/stackling/jump_on_area.gd" id="5_jfxq7"]
+
+[sub_resource type="Animation" id="Animation_p4p6d"]
+resource_name = "hit_ground"
+length = 0.08
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteRoot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="3"]
+resource_name = "idle"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteRoot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6uut7"]
+resource_name = "jump"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteRoot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="4"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteRoot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 2, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ylc8g"]
+_data = {
+"hit_ground": SubResource("Animation_p4p6d"),
+"idle": SubResource("3"),
+"jump": SubResource("Animation_6uut7"),
+"walk": SubResource("4")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmr11"]
+size = Vector2(8, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akyqy"]
+size = Vector2(12, 15)
+
+[node name="Stackling" type="CharacterBody2D"]
+texture_filter = 1
+collision_layer = 4
+collision_mask = 5
+platform_floor_layers = 4294967288
+script = ExtResource("1_lsscb")
+texture = ExtResource("2_vcqa7")
+hold_texture = ExtResource("3_646ae")
+
+[node name="SpriteRoot" type="Node2D" parent="."]
+
+[node name="HoldBackSprite" type="Sprite2D" parent="SpriteRoot"]
+visible = false
+position = Vector2(0, -10)
+texture = ExtResource("4_u5ua6")
+
+[node name="Sprite" type="Sprite2D" parent="SpriteRoot"]
+z_index = 1
+position = Vector2(0, -10)
+texture = ExtResource("2_vcqa7")
+hframes = 4
+frame = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_ylc8g")
+}
+
+[node name="JumpOnArea" type="Area2D" parent="."]
+script = ExtResource("5_jfxq7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpOnArea"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_lmr11")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_akyqy")

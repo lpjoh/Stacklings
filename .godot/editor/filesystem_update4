@@ -1,0 +1,8 @@
+res://assets/objects/player/player.tscn
+res://assets/objects/game.tscn
+res://assets/objects/stackling/stackling.tscn
+res://assets/objects/player/Player.gd
+res://assets/objects/stackling/basic_stackling.tscn
+res://assets/objects/stackling/stackling.gd
+res://assets/objects/stackling/basic_stackling.gd
+res://assets/objects/player/player.gd
