@@ -3,13 +3,13 @@ class_name Player
 
 const gravity = 300.0
 const jump_speed = 175.0
-const jump_midstop = 0.65
+const jump_midstop = 0.5
 
 const walk_accel = 200.0
 const max_walk_speed = 65.0
 
 const ground_friction_strength = 4.0
-const air_friction_strength = 0.5
+const air_friction_strength = 0.0
 
 const basic_stackling_file = preload("res://assets/objects/stackling/basic_stackling.tscn")
 
@@ -137,6 +137,7 @@ func _physics_process(delta):
 		velocity.x += walk_sign * walk_accel * delta
 		velocity.x = clamp(velocity.x, -max_walk_speed, max_walk_speed)
 	
+	prev_on_floor = is_on_floor()
 	move_and_slide()
 	
 	if Input.is_action_just_pressed("throw"):
@@ -149,7 +150,6 @@ func _physics_process(delta):
 			bottom_stackling.set_holding(false)
 	
 	animate_sprites()
-	prev_on_floor = is_on_floor()
 	
 	if Input.is_action_just_pressed("show_menu"):
 		get_tree().reload_current_scene()

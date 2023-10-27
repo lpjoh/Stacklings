@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl85e3gippjw4"]
+[gd_scene load_steps=7 format=3 uid="uid://dl85e3gippjw4"]
 
 [ext_resource type="PackedScene" uid="uid://cedvmajx2qnq2" path="res://assets/objects/player/player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://bklw30j6qlq3g" path="res://assets/textures/test_tile.png" id="2"]
 [ext_resource type="PackedScene" uid="uid://cyyy3um6325sj" path="res://assets/objects/stackling/basic_stackling.tscn" id="3_y06wp"]
+[ext_resource type="Script" path="res://assets/objects/player/Camera2D.gd" id="4_qers4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_14d0w"]
 texture = ExtResource("2")
@@ -90,3 +91,7 @@ position = Vector2(670, 141)
 
 [node name="Player" parent="." instance=ExtResource("1")]
 position = Vector2(516, 220)
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("4_qers4")
+player = NodePath("../Player")
