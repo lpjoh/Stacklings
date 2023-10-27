@@ -23,9 +23,9 @@ func _physics_process(delta):
 	
 	if global_position.x != clamped_x:
 		offset.x = clamp(
-		offset.x + (clamped_x - global_position.x),
-		-offset_x_limit,
-		offset_x_limit)
+			offset.x + (clamped_x - global_position.x),
+			-offset_x_limit,
+			offset_x_limit)
 	
 	global_position.x = clamped_x
 	
