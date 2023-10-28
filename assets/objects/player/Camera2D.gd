@@ -1,6 +1,6 @@
 extends Camera2D
 
-const drag_x_limit = 24
+const drag_x_limit = 16
 const offset_x_limit = 48
 const floor_y_offset = 16
 const fall_limit = 48

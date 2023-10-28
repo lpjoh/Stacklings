@@ -1,4 +1,2 @@
 res://assets/objects/stackling/basic_stackling.tscn
 res://assets/objects/game.tscn
-res://assets/objects/player/player.gd
-res://assets/objects/player/Camera2D.gd
