@@ -40,6 +40,5 @@ func _physics_process(delta):
 			player.global_position.y - floor_y_offset,
 			0.5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	
-	global_position.y = max(global_position.y, player.position.y - fall_limit)
-	
-	Engine.max_fps = 60
+	var bottom_edge = player.position.y - fall_limit
+	global_position.y = max(global_position.y, bottom_edge)
